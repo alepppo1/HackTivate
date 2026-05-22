@@ -352,6 +352,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <?php endif; ?>
         </div>
     </div>
+    <div style="margin-top:20px;">
+        <a class="btn primary" href="result.php?profile_id=<?php echo $profile_id; ?>" data-en="View Final Result" data-bm="Lihat Keputusan Akhir">
+            View Final Result
+        </a>
+    </div>
 </main>
 
 </body>

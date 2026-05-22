@@ -56,8 +56,13 @@ if ($profile_id) {
             </p>
 
             <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:24px;">
-                <a class="btn primary" href="salary.php" data-en="Start Check" data-bm="Mula Semak">Start Check</a>
-                <a class="btn secondary" href="#how" data-en="View Flow" data-bm="Lihat Aliran">View Flow</a>
+                <a class="btn primary" href="salary.php" data-en="Try My Safety Check" data-bm="Cuba Semakan Saya">
+                    Try My Safety Check
+                </a>
+
+                <a class="btn secondary" href="#how" data-en="How It Works" data-bm="Cara Ia Berfungsi">
+                    How It Works
+                </a>
             </div>
 
             <div class="persona-row">
@@ -123,24 +128,18 @@ if ($profile_id) {
     </section>
 
     <section class="card unique-card" style="margin-top:24px;">
-        <div class="clean-row" style="align-items:center;flex-wrap:wrap;">
-            <div>
-                <div class="pill" data-en="What makes CashCue different" data-bm="Apa yang menjadikan CashCue berbeza">
-                    What makes CashCue different
-                </div>
-
-                <h2 style="margin-top:14px;" data-en="Most apps track spending after money is gone. CashCue checks risk before you commit." data-bm="Kebanyakan aplikasi merekod belanja selepas wang keluar. CashCue menyemak risiko sebelum anda komit.">
-                    Most apps track spending after money is gone. CashCue checks risk before you commit.
-                </h2>
-
-                <p class="muted" data-en="This makes CashCue a prevention tool, not just a budget tracker." data-bm="Ini menjadikan CashCue alat pencegahan, bukan sekadar pencatat bajet.">
-                    This makes CashCue a prevention tool, not just a budget tracker.
-                </p>
+        <div>
+            <div class="pill" data-en="What makes CashCue different" data-bm="Apa yang menjadikan CashCue berbeza">
+                What makes CashCue different
             </div>
 
-            <a class="btn primary" href="salary.php" data-en="Start Safety Check" data-bm="Mula Semakan Selamat">
-                Start Safety Check
-            </a>
+            <h2 style="margin-top:14px;" data-en="Most apps track spending after money is gone. CashCue checks risk before you commit." data-bm="Kebanyakan aplikasi merekod belanja selepas wang keluar. CashCue menyemak risiko sebelum anda komit.">
+                Most apps track spending after money is gone. CashCue checks risk before you commit.
+            </h2>
+
+            <p class="muted" data-en="This makes CashCue a prevention tool, not just a budget tracker." data-bm="Ini menjadikan CashCue alat pencegahan, bukan sekadar pencatat bajet.">
+                This makes CashCue a prevention tool, not just a budget tracker.
+            </p>
         </div>
     </section>
 
@@ -179,24 +178,6 @@ if ($profile_id) {
             <p class="muted" data-en="CashCue suggests whether to proceed, reduce, delay, or avoid the commitment." data-bm="CashCue mencadangkan sama ada untuk teruskan, kurangkan, tangguh, atau elakkan komitmen tersebut.">
                 CashCue suggests whether to proceed, reduce, delay, or avoid the commitment.
             </p>
-        </div>
-    </section>
-
-    <section class="card" style="margin-top:24px;">
-        <div class="clean-row" style="align-items:center;flex-wrap:wrap;">
-            <div>
-                <h2 data-en="Shariah-aware by design" data-bm="Mesra Syariah sejak reka bentuk">
-                    Shariah-aware by design
-                </h2>
-
-                <p class="muted" style="margin-bottom:0;" data-en="CashCue promotes responsible affordability guidance, avoids overcommitment, and supports mindful financial planning. It is not official bank approval." data-bm="CashCue menggalakkan panduan kemampuan yang bertanggungjawab, mengelakkan komitmen berlebihan, dan menyokong perancangan kewangan yang berhemah. Ia bukan kelulusan rasmi bank.">
-                    CashCue promotes responsible affordability guidance, avoids overcommitment, and supports mindful financial planning. It is not official bank approval.
-                </p>
-            </div>
-
-            <a class="btn primary" href="salary.php" data-en="Try Prototype" data-bm="Cuba Prototaip">
-                Try Prototype
-            </a>
         </div>
     </section>
 </main>
