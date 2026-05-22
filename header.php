@@ -7,7 +7,7 @@ $current = basename($_SERVER['PHP_SELF']);
             <div class="logo">CC</div>
             <div>
                 <h1>CashCue</h1>
-                <p data-en="AI financial readiness checker" data-bm="Semakan kesediaan kewangan AI">AI financial readiness checker</p>
+                <p data-en="Pre-commitment safety checker" data-bm="Semakan keselamatan sebelum komitmen">Pre-commitment safety checker</p>
             </div>
         </a>
 
