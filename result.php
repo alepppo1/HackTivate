@@ -34,9 +34,7 @@ $stmt->execute();
 $goals = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 
 $health = calculateHealth($profile, $commitments, $goals);
-$decisionLine = "You can proceed, but keep monitoring your spending.";
-if ($health['status'] == "Caution") $decisionLine = "Proceed only after reducing amount or extending timeline.";
-if ($health['status'] == "Risky") $decisionLine = "Not recommended now. Reduce or delay the commitment.";
+$decisionLine = $health['next_best_action'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -56,7 +54,9 @@ if ($health['status'] == "Risky") $decisionLine = "Not recommended now. Reduce o
                 <h2 style="margin-top:14px;" data-en="Can I Commit?" data-bm="Boleh Saya Komit?">Can I Commit?</h2>
                 <p class="muted"><?php echo htmlspecialchars($decisionLine); ?></p>
             </div>
-            <span class="badge d<?php echo $health['status']; ?>">Decision: <?php echo $health['status']; ?></span>
+            <span class="badge d<?php echo $health['status']; ?>">
+                <?php echo $health['decision_action']; ?> · <?php echo $health['status']; ?>
+            </span>
         </div>
 
         <div class="grid two" style="margin-top:18px;">
@@ -74,6 +74,68 @@ if ($health['status'] == "Risky") $decisionLine = "Not recommended now. Reduce o
             </div>
         </div>
     </div>
+
+<div class="card" style="margin-top:20px;">
+    <div class="clean-row" style="align-items:flex-start;flex-wrap:wrap;">
+        <div>
+            <div class="pill" data-en="Smart recommendation" data-bm="Cadangan pintar">
+                Smart recommendation
+            </div>
+
+            <h2 style="margin-top:14px;">
+                <?php echo htmlspecialchars($health['decision_action']); ?>
+            </h2>
+
+            <p class="muted" style="margin-bottom:0;">
+                <?php echo htmlspecialchars($health['next_best_action']); ?>
+            </p>
+        </div>
+
+        <a class="btn primary" href="coach.php?profile_id=<?php echo $profile_id; ?>" data-en="Open Smart Coach" data-bm="Buka Jurulatih Pintar">
+            Open Smart Coach
+        </a>
+    </div>
+</div>
+
+<div class="card" style="margin-top:20px;">
+    <h2 data-en="Why this score?" data-bm="Kenapa skor ini?">
+        Why this score?
+    </h2>
+
+    <p class="muted" data-en="CashCue uses explainable rules so users can understand what affected their result." data-bm="CashCue menggunakan peraturan yang boleh dijelaskan supaya pengguna faham apa yang mempengaruhi keputusan mereka.">
+        CashCue uses explainable rules so users can understand what affected their result.
+    </p>
+
+    <div class="grid two" style="margin-top:16px;">
+        <div class="feature">
+            <h3 data-en="Before" data-bm="Sebelum">Before</h3>
+
+            <?php foreach ($health['breakdown_before'] as $item): ?>
+                <div class="item">
+                    <div>
+                        <b><?php echo htmlspecialchars($item[0]); ?></b>
+                        <p class="muted" style="margin:4px 0 0;"><?php echo htmlspecialchars($item[2]); ?></p>
+                    </div>
+                    <b><?php echo htmlspecialchars($item[1]); ?></b>
+                </div>
+            <?php endforeach; ?>
+        </div>
+
+        <div class="feature">
+            <h3 data-en="After" data-bm="Selepas">After</h3>
+
+            <?php foreach ($health['breakdown_after'] as $item): ?>
+                <div class="item">
+                    <div>
+                        <b><?php echo htmlspecialchars($item[0]); ?></b>
+                        <p class="muted" style="margin:4px 0 0;"><?php echo htmlspecialchars($item[2]); ?></p>
+                    </div>
+                    <b><?php echo htmlspecialchars($item[1]); ?></b>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</div>
 
     <div class="grid two" style="margin-top:20px;">
         <div class="card">
@@ -93,13 +155,13 @@ if ($health['status'] == "Risky") $decisionLine = "Not recommended now. Reduce o
         </div>
 
         <div class="card">
-            <h2 data-en="Simple Summary" data-bm="Ringkasan Mudah">Simple Summary</h2>
+            <h2 data-en="Safer Monthly Limit" data-bm="Had Bulanan Lebih Selamat">Safer Monthly Limit</h2>
             <div class="feature">
                 <b data-en="Recommended monthly limit" data-bm="Had bulanan dicadangkan">Recommended monthly limit</b>
                 <h2 style="margin-top:8px;"><?php echo money($health['max_recommended']); ?>/month</h2>
             </div>
-            <p class="muted" style="margin-top:14px;" data-en="Use this limit as a safer guide before taking another monthly payment." data-bm="Gunakan had ini sebagai panduan lebih selamat sebelum mengambil bayaran bulanan baharu.">
-                Use this limit as a safer guide before taking another monthly payment.
+            <p class="muted" style="margin-top:14px;" data-en="This is the estimated safer monthly amount you can add without pushing your profile too far into risk." data-bm="Ini ialah anggaran jumlah bulanan lebih selamat yang boleh ditambah tanpa menolak profil anda terlalu jauh ke arah risiko.">
+                This is the estimated safer monthly amount you can add without pushing your profile too far into risk.
             </p>
             <a class="btn primary" href="coach.php?profile_id=<?php echo $profile_id; ?>" data-en="Open AI Coach" data-bm="Buka Nasihat AI">Open AI Coach</a>
         </div>
