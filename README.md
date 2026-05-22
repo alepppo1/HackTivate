@@ -1,23 +1,86 @@
-# HackTivate
-UMPSA Hackathon 2026 - Team HackTivate
+# CashCue: AI Financial Readiness Checker
 
-# Project Title
-CommitWise AI: Smart Commitment Advisor
+## Track
+Track 1 – Reimagine Money
 
-# Problem Statement
-Many young earners make financial commitment without fully understanding whether their monthly salary can support them or not. Decision such as taking a car loan, applying for house financing, paying family commitments, buying items through installments or saving for life goals are often made based on monthly payment amounts. However, users may not consider their existing debt, lifestlye spending, savings rate and long-term financial pressure. Existing financial calculators usually calculate installment amounts, but they do not clearly explain whether the user's overall salary condition is healthy or risky. This can lead to poor financial decisions, low savings, and financial stress. As a result, users may become financial stressed, save too little or lack of emergency funds after committing to new expenses. GajiPilot AI address this problem by helping users check their financial readiness before making commitments. The system analyzes salary, expenses, debt, savings, emergency fund, commitments, and life goals to give a clear safe decision with simple AI Coach advice. 
+## Project Idea
+CashCue helps salary earners check whether a new monthly commitment or life goal is safe before they decide.
 
-# Target Users
-- Students with allowance or part-time income
-- Fresh graduates
-- Young employees
-- Employees supporting family members
-- People planning life goals
+Simple flow:
+1. Submit salary profile
+2. Add commitments
+3. Add goals
+4. View Safe / Caution / Risky result
+5. Open AI Coach for simple advice
 
-# Key Features
-- Salary Profile
-- Current Salary Plan
-- Commitment Builder
-- Life Goals Planner
-- "Can I Commit?" Result
-- AI Money Coach
+## Key Features
+- Salary affordability score
+- Commitment ratio and saving rate check
+- Emergency fund coverage check
+- Life goal monthly saving calculator
+- Shariah-aware responsible planning note
+- ENG/BM language toggle
+- Minimalist pastel banking-style interface
+- Smooth hover animation on navigation and buttons
+- Salary-required error message before Goals/Result/Coach can be used
+- Auto database/table setup when MySQL is running
+
+## Tech Stack
+- PHP
+- MySQL
+- HTML
+- CSS
+- JavaScript
+
+## Setup Instructions
+
+### 1. Put project folder in XAMPP
+Copy the `cashcue_php` folder into:
+
+```text
+C:/xampp/htdocs/
+```
+
+### 2. Start XAMPP
+Start:
+- Apache
+- MySQL
+
+### 3. Run project
+Open:
+
+```text
+http://localhost/cashcue_php/
+```
+
+CashCue will automatically create the database `cashcue_db` and the required tables when the website is opened.
+
+### Optional manual database setup
+If your lecturer/friend wants to import manually, open phpMyAdmin:
+
+```text
+http://localhost/phpmyadmin
+```
+
+Import this file:
+
+```text
+cashcue_php/database.sql
+```
+
+## AI Logic
+CashCue uses explainable rule-based AI logic. It calculates:
+- commitment ratio
+- saving rate
+- emergency fund coverage
+- monthly goal saving
+- before vs after score
+
+The AI Coach converts the calculations into simple advice.
+
+## AI Tools Used
+- ChatGPT for idea development, prototype planning, UI refinement, and code assistance
+- Rule-based AI logic in the prototype for explainable financial advice
+
+## Notes for Judges
+This is a hackathon prototype. It provides affordability guidance only and does not replace official financial advice or bank approval.
