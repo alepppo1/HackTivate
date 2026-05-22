@@ -43,8 +43,8 @@ if ($profile_id) {
 <main>
     <section class="hero">
         <div>
-            <div class="pill" data-en="Track 1: Reimagine Money" data-bm="Trek 1: Bayangkan Semula Wang">
-                Track 1: Reimagine Money
+            <div class="pill" data-en="Financial safety tool" data-bm="Alat keselamatan kewangan">
+                Financial safety tool
             </div>
 
             <h2 class="big" data-en="Check before you commit." data-bm="Semak sebelum anda komit.">
