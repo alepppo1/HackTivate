@@ -552,3 +552,72 @@ select:focus-visible {
     .item { align-items: flex-start; flex-direction: column; }
     .big { letter-spacing: -1.2px; }
 }
+
+.unique-card {
+    background:
+        linear-gradient(135deg, rgba(255,255,255,0.95), rgba(240,236,255,0.78)),
+        radial-gradient(circle at top right, rgba(223,247,234,0.9), transparent 34%);
+}
+
+.persona-row {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 18px;
+}
+
+.persona-card {
+    text-decoration: none;
+    color: var(--ink);
+    background: rgba(255, 255, 255, 0.82);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 14px;
+    display: grid;
+    gap: 4px;
+    box-shadow: 0 8px 18px rgba(16, 42, 67, 0.06);
+    transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease, background 0.22s ease;
+}
+
+.persona-card span {
+    font-size: 24px;
+}
+
+.persona-card b {
+    font-size: 15px;
+}
+
+.persona-card small {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.persona-card:hover {
+    transform: translateY(-4px);
+    border-color: #b8ead0;
+    background: #fffdf8;
+    box-shadow: 0 14px 28px rgba(16, 42, 67, 0.12);
+}
+
+.card,
+.feature,
+.stat,
+.item,
+.btn {
+    transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease, background 0.22s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+@media (max-width: 780px) {
+    .persona-row {
+        grid-template-columns: 1fr;
+    }
+}
