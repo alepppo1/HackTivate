@@ -60,15 +60,15 @@
                     Before vs after financial safety
                 </h2>
 
-                <p style="color:#dbe7ef;margin-bottom:0;" data-en="See how a new commitment changes your score before you say yes." data-bm="Lihat bagaimana komitmen baharu mengubah skor anda sebelum anda bersetuju.">
-                    See how a new commitment changes your score before you say yes.
+                <p style="color:#dbe7ef;margin-bottom:0;" data-en="Your score will appear after you enter a salary profile and test a commitment." data-bm="Skor anda akan dipaparkan selepas anda memasukkan profil gaji dan menguji komitmen.">
+                    Your score will appear after you enter a salary profile and test a commitment.
                 </p>
             </div>
 
             <div class="grid three" style="margin-top:14px;">
-                <div class="stat">Before<b>82/100</b></div>
-                <div class="stat">After<b>63/100</b></div>
-                <div class="stat">Decision<b>Caution</b></div>
+                <div class="stat">Before<b>--/100</b></div>
+                <div class="stat">After<b>--/100</b></div>
+                <div class="stat">Decision<b>--</b></div>
             </div>
         </div>
     </section>
