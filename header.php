@@ -16,6 +16,7 @@ $current = basename($_SERVER['PHP_SELF']);
             <a class="<?php echo $current == 'salary.php' ? 'active' : ''; ?>" href="salary.php" data-en="Salary" data-bm="Gaji">Salary</a>
             <a class="<?php echo $current == 'commitments.php' ? 'active' : ''; ?>" href="commitments.php" data-en="Commitments" data-bm="Komitmen">Commitments</a>
             <a class="<?php echo $current == 'goals.php' ? 'active' : ''; ?>" href="goals.php" data-en="Goals" data-bm="Matlamat">Goals</a>
+            <a class="<?php echo $current == 'simulator.php' ? 'active' : ''; ?>" href="simulator.php" data-en="Simulator" data-bm="Simulator">Simulator</a>
             <a class="<?php echo $current == 'result.php' ? 'active' : ''; ?>" href="result.php" data-en="Result" data-bm="Keputusan">Result</a>
             <a class="<?php echo $current == 'coach.php' ? 'active' : ''; ?>" href="coach.php" data-en="Coach" data-bm="Nasihat">Coach</a>
         </nav>
