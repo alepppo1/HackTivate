@@ -70,10 +70,79 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_POST['dependents']
     );
     $stmt->execute();
-    $profile_id = $stmt->insert_id;
-    $_SESSION['profile_id'] = $profile_id;
-    header("Location: commitments.php?profile_id=" . $profile_id);
-    exit;
+$profile_id = $stmt->insert_id;
+$_SESSION['profile_id'] = $profile_id;
+
+$selectedDemo = $_POST['selected_demo'] ?? "";
+
+$demoCommitments = [
+    "aina" => [
+        ["PTPTN Payment", "Education", 150, "Ongoing"],
+        ["Phone Plan", "Installment", 100, "24 months"],
+        ["Transport", "Custom", 180, "Monthly"]
+    ],
+    "hafiz" => [
+        ["Motorcycle Financing", "Financing", 280, "4 years"],
+        ["Family Support", "Family", 250, "Monthly"],
+        ["Phone Plan", "Installment", 90, "Ongoing"]
+    ],
+    "mei" => [
+        ["Car Financing", "Financing", 450, "7 years"],
+        ["Medical Takaful", "Takaful", 120, "Monthly"],
+        ["Study Loan", "Education", 180, "Ongoing"]
+    ]
+];
+
+$demoGoals = [
+    "aina" => [
+        ["Emergency Fund", 5000, 1800, 12],
+        ["Laptop Upgrade", 3000, 600, 10]
+    ],
+    "hafiz" => [
+        ["Emergency Fund", 4000, 900, 18],
+        ["Business Equipment", 2500, 300, 12]
+    ],
+    "mei" => [
+        ["Umrah Savings", 8000, 2500, 18],
+        ["House Deposit", 15000, 4200, 24]
+    ]
+];
+
+if ($selectedDemo && isset($demoCommitments[$selectedDemo])) {
+    $stmtCommitment = $conn->prepare("INSERT INTO commitments (profile_id, commitment_name, category, monthly_amount, duration_text) VALUES (?, ?, ?, ?, ?)");
+
+    foreach ($demoCommitments[$selectedDemo] as $commitment) {
+        $stmtCommitment->bind_param(
+            "issds",
+            $profile_id,
+            $commitment[0],
+            $commitment[1],
+            $commitment[2],
+            $commitment[3]
+        );
+        $stmtCommitment->execute();
+    }
+}
+
+if ($selectedDemo && isset($demoGoals[$selectedDemo])) {
+    $stmtGoal = $conn->prepare("INSERT INTO life_goals (profile_id, goal_name, target_amount, current_saved, target_months) VALUES (?, ?, ?, ?, ?)");
+
+    foreach ($demoGoals[$selectedDemo] as $goal) {
+        $stmtGoal->bind_param(
+            "isddi",
+            $profile_id,
+            $goal[0],
+            $goal[1],
+            $goal[2],
+            $goal[3]
+        );
+        $stmtGoal->execute();
+    }
+}
+
+header("Location: commitments.php?profile_id=" . $profile_id);
+exit;
+
 }
 ?>
 <!DOCTYPE html>
@@ -117,6 +186,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </p>
 
             <form method="POST" class="form">
+            <input type="hidden" name="selected_demo" value="<?php echo htmlspecialchars($selectedDemo); ?>">
                 <div>
                     <label data-en="Name" data-bm="Nama">Name</label>
                     <input type="text" name="user_name" placeholder="e.g. Aina" value="<?php echo oldOrDemo('user_name', $demo); ?>" required>
