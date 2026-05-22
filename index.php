@@ -1,3 +1,34 @@
+<?php
+include "config.php";
+include "functions.php";
+
+$homeHealth = null;
+$homeProfileName = "";
+
+$profile_id = isset($_SESSION['profile_id']) ? (int)$_SESSION['profile_id'] : null;
+
+if ($profile_id) {
+    $stmt = $conn->prepare("SELECT * FROM salary_profiles WHERE id = ?");
+    $stmt->bind_param("i", $profile_id);
+    $stmt->execute();
+    $profile = $stmt->get_result()->fetch_assoc();
+
+    if ($profile) {
+        $stmt = $conn->prepare("SELECT * FROM commitments WHERE profile_id = ?");
+        $stmt->bind_param("i", $profile_id);
+        $stmt->execute();
+        $commitments = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+
+        $stmt = $conn->prepare("SELECT * FROM life_goals WHERE profile_id = ?");
+        $stmt->bind_param("i", $profile_id);
+        $stmt->execute();
+        $goals = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+
+        $homeHealth = calculateHealth($profile, $commitments, $goals);
+        $homeProfileName = $profile['user_name'];
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -60,15 +91,33 @@
                     Before vs after financial safety
                 </h2>
 
-                <p style="color:#dbe7ef;margin-bottom:0;" data-en="Your score will appear after you enter a salary profile and test a commitment." data-bm="Skor anda akan dipaparkan selepas anda memasukkan profil gaji dan menguji komitmen.">
-                    Your score will appear after you enter a salary profile and test a commitment.
-                </p>
+                <?php if ($homeHealth): ?>
+                    <p style="color:#dbe7ef;margin-bottom:0;">
+                        Latest check loaded for <?php echo htmlspecialchars($homeProfileName); ?>.
+                        Open Result to view the full breakdown.
+                    </p>
+                <?php else: ?>
+                    <p style="color:#dbe7ef;margin-bottom:0;" data-en="Your score will appear after you enter a salary profile and test a commitment." data-bm="Skor anda akan dipaparkan selepas anda memasukkan profil gaji dan menguji komitmen.">
+                        Your score will appear after you enter a salary profile and test a commitment.
+                    </p>
+                <?php endif; ?>
             </div>
 
             <div class="grid three" style="margin-top:14px;">
-                <div class="stat">Before<b>--/100</b></div>
-                <div class="stat">After<b>--/100</b></div>
-                <div class="stat">Decision<b>--</b></div>
+                <div class="stat">
+                    Before
+                    <b><?php echo $homeHealth ? $homeHealth['score_before'] . '/100' : '--/100'; ?></b>
+                </div>
+
+                <div class="stat">
+                    After
+                    <b><?php echo $homeHealth ? $homeHealth['score_after'] . '/100' : '--/100'; ?></b>
+                </div>
+
+                <div class="stat">
+                    Decision
+                    <b><?php echo $homeHealth ? $homeHealth['status'] : '--'; ?></b>
+                </div>
             </div>
         </div>
     </section>
